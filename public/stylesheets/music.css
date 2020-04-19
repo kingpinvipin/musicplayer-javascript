@@ -1,0 +1,38 @@
+
+#header{
+    background-color: yellowgreen;
+    height: 100px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0 ;
+    margin:0px 5px 10px 5px;
+    border-radius: 0px 0px 15px 15px;
+}
+#slist{
+    width: 28%;
+    height:760px;
+    float: left;
+    border-radius: 25px;
+    margin: 5px;
+}
+ #mp{
+     width: 70%;
+     height: 760px;
+     float:right;   
+     margin: 5px;
+     border-radius: 10px;
+ }
+ #image{
+     background-image: url('../images/gui.jpg');
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 5px;
+    border-style: inherit;
+ }
+ .song{
+     margin-bottom: 15px;
+ }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GemsPlayer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="stylesheets/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="bg">
+            <div id="blackLayer"></div>
+            <img src="images/gui.jpg"/>
+        </div>
+       
+        <div id="main">
+            <div id="image">
+                <img src="images/gui.jpg"/>
+            </div>
+            <div id="player">
+                <div id="songTitle"></div>
+                <div id="buttons">
+                    <button id="pre" onclick="pre()"><img src="images/pre.png" height="90%" width="90%"/></button>
+                    <button id="play" onclick="playOrPauseSong()"><img src="images/play.png"/></button>
+                    <button id="next" onclick="next()"><img src="images/next.png" height="90%" width="90%"/></button>
+                </div>
+                <div class="progress">
+                        <div class="progress-bar"  aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+                </div>
+            </div>
+            <audio id = "myAudio">
+                <source src="songs/Journey.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <script>
+           var songList = ['Journey','dholna','hawayein','khogaye','dhaaga','dilbaro'];
+           var poster = ['Piku3','gui','gui','bbd','gui','dilbaro'];
+           var currentSong = 0 ;
+           var songTitle = document.getElementById("songTitle");
+           var song = document.getElementById("myAudio");
+           songTitle.innerText = songList[0];
+           var ploc = "images/" + poster[currentSong] + '.jpg';
+           $("#image img").attr("src",ploc);
+           $("#bg img").attr("src",ploc);
+           
+           function playSong(){
+               songTitle.innerText = songList[currentSong];
+               var songLoc = "songs/" + songList[currentSong] + ".mp3";
+               song.setAttribute("src",songLoc);
+               song.play();
+           }
+           function playOrPauseSong(){
+               if(song.paused){
+                   song.play(); 
+                   $("#play img").attr("src","images/pause.png");
+               }else{
+                   song.pause();
+                   $("#play img").attr("src","images/play.png");
+               }
+           }
+           function pre(){
+               if(currentSong >= 1) currentSong = currentSong - 1 ;
+               playSong();
+               $("#play img").attr("src","images/pause.png");
+               var ploc = "images/" + poster[currentSong] + '.jpg';
+               $("#image img").attr("src",ploc);
+               $("#bg img").attr("src",ploc);
+           }
+           function next(){
+               if(currentSong < 5) currentSong = currentSong + 1 ;
+               playSong();
+               $("#play img").attr("src","images/pause.png");
+               var ploc = "images/" + poster[currentSong] + '.jpg';
+               $("#image img").attr("src",ploc);
+               $("#bg img").attr("src",ploc);
+           }
+           $('#myAudio').on('timeupdate',function() {
+               $('.progress-bar')[0].style.width = (this.currentTime / this.duration)*100 + "%" ;
+           });
+        </script>    
+    </body>
+</html>
